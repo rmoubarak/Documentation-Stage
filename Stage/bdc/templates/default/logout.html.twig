@@ -1,0 +1,24 @@
+{% extends 'base_card.html.twig' %}
+
+{% block title %}Déconnexion{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-sign-out-alt text-primary"></i> Déconnexion</h1>
+{% endblock %}
+
+{% block container %}
+    <h1 class="pb-1 mb-4 text-center">Déconnexion</h1>
+
+    <div class="row mb-5">
+        <div class="offset-md-3 col-md-6 offset-lg-4 col-lg-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Vous êtes déconnecté.</p>
+
+                    <div class="text-center"><a class="btn btn-success btn-lg" href="{{ path('default_index') }}"><i class="fa-solid fa-lg fa-plug"></i>
+                            Vous connecter à nouveau</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

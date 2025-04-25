@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Versions{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-list text-primary"></i> Historique des versions</h1>
+{% endblock %}
+
+{% block filariane %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('default_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Version</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block main %}
+    <h2>Version 1.0</h2>
+
+    <ul>
+        <li>Mise en ligne le </li>
+    </ul>
+{% endblock %}

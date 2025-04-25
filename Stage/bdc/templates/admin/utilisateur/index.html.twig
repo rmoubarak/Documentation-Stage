@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-user text-primary"></i> Comptes utilisateurs</h1>
+{% endblock %}
+
+{% block filariane %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('default_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Utilisateurs</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block navigation %}
+    <a href="#" data-href="{{ path('utilisateur_new') }}" data-bs-toggle="modal" data-bs-target="#formModal"
+       data-title="Ajouter un compte utilisateur" class="btn btn-primary btn-sm"><i
+                class="fa-solid fa-plus-circle"></i> Ajouter un compte utilisateur</a>
+    <a href="#" data-href="{{ path('utilisateur_newad') }}" role="button" data-bs-toggle="modal" data-bs-target="#formModal"
+       data-title="Ajout rapide" role="button" class="btn btn-primary btn-sm"><i
+                class="fa-solid fa-plus-circle"></i> Ajouter par recherche annuaire</a>
+    <a href="{{ path('utilisateur_excel') }}" class="btn btn-success btn-sm"><i class="fa-solid fa-file-excel"></i> Exporter sous Excel</a>
+{% endblock %}
+
+{% block importmap %}
+    {{ importmap({0: 'app', 1: 'utilisateur'}) }}
+{% endblock %}
+
+{% block main %}
+    <form id="frm_filtre" data-filtre="true" data-action="{{ path('utilisateur_list', {'page': 1}) }}" class="js-list" data-list="utilisateur_list" method="post">
+        <fieldset class="bd-callout bd-callout-info shadow mb-5">
+            <legend style="margin-top: -40px;">Filtres</legend>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input name="q" value="" class="form-control" placeholder="Recherche ..." />
+                </div>
+
+                <div class="col-md-auto">
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </fieldset>
+
+        <div id="utilisateur_list"></div>
+    </form>
+
+    {{ include('default/_modal_form.html.twig') }}
+{% endblock %}

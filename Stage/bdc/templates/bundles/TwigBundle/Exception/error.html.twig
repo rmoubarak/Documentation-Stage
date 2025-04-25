@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur {{ status_code }}{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-heart-broken text-danger"></i> Une erreur est survenue</h1>
+{% endblock %}
+
+{% block filariane %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('default_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Erreur</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block main %}
+    <h2 class="text-center">Le serveur a retourn&eacute; une erreur "{{ status_code }} {{ status_text }}".</h2>
+
+    <div class="mt-5 text-danger text-center">
+        <i class="fa-solid fa-10x fa-heart-broken"></i>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-user text-primary"></i> Les catégories</h1>
+{% endblock %}
+
+{% block filariane %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('default_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Catégories</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block importmap %}
+    {{ importmap({0: 'app', 1: 'categorie'}) }}
+{% endblock %}
+
+
+{% block navigation %}
+    <a href="#" data-href="{{ path('categorie_new') }}" data-bs-toggle="modal" data-bs-target="#formModal"
+       data-title="Ajouter une categorie" class="btn btn-primary btn-sm"><i
+                class="fa-solid fa-plus-circle"></i> Ajouter une catégorie</a>
+{% endblock %}
+
+{% block main %}
+
+    <form id="frm_filtre" data-filtre="true" data-action="{{ path('categorie_list', {'page': 1}) }}" class="js-list" data-list="categorie_list" method="post">
+        <div id="categorie_list"></div>
+    </form>
+
+    {{ include('default/_modal_form.html.twig') }}
+{% endblock %}

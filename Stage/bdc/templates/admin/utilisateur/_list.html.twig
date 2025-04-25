@@ -1,0 +1,58 @@
+{% import "default/_macro.html.twig" as macro %}
+
+{% if utilisateurs|length != 0 %}
+    <p class="text-info mt-2">
+        <i class="fa-solid fa-list"></i>
+        <strong>Utilisateurs {{ utilisateurs.getPaginationData.firstItemNumber }}
+            à {{ utilisateurs.getPaginationData.lastItemNumber }}
+            sur {{ utilisateurs.getTotalItemCount }}</strong>
+    </p>
+
+    {% if utilisateurs.pageCount > 1 %}
+        <div class="nav justify-content-center text-center pb-2">
+            {{ knp_pagination_render(utilisateurs) }}
+        </div>
+    {% endif %}
+
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+        <tr>
+            <th class="text-nowrap">{{ knp_pagination_sortable(utilisateurs, 'Utilisateur', 'u.nom') }}</th>
+            <th>Pôle, Direction</th>
+            <th>Email</th>
+            <th>Dernière connexion</th>
+            <th class="text-center">Actif</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>
+                    &bull; <a href="#" data-href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}" data-bs-toggle="modal"
+                              data-bs-target="#formModal" data-title="Modifier un compte utilisateur" class="icone_edit"><strong>{{ macro.surligne(utilisateur, q)}}</strong></a><br />
+                    <em>{{ macro.surligne(utilisateur.role, q)}}</em>
+                </td>
+                <td>{{ utilisateur.direction ? utilisateur.direction.pole }}<br />{{ utilisateur.direction }}</td>
+                <td>{{ macro.surligne(utilisateur.email, q)}}</td>
+                <td>{{ utilisateur.access|length > 0 ? utilisateur.access[0].date|date('d/m/Y \à H:i') }}</td>
+                <td class="text-center">
+                    {% if utilisateur.actif %}
+                        <i class="fa-solid fa-check text-success"></i>
+                    {% else %}
+                        <i class="fa-solid fa-ban text-danger"></i>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if utilisateurs.pageCount > 1 %}
+        <div class="nav justify-content-center text-center mt-3">
+            {{ knp_pagination_render(utilisateurs) }}
+        </div>
+    {% endif %}
+
+{% else %}
+    {{ component('Alert', { type: 'success', message: 'Aucun utilisateur' }) }}
+{% endif %}

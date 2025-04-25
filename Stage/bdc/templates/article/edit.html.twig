@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de l'article{% endblock %}
+
+{% block main %}
+    <section class="container px-4">
+        <div class="w-50 m-auto">
+            <h1>Modification de l'article</h1>
+            {{ form_start(form) }}
+            {{ form_row(form.titre, {label: 'Titre'}) }}
+            {{ form_row(form.detail, {label: 'Détail'}) }}
+            {{ form_row(form.categories, {label: 'Catégorie(s)'}) }}
+            {{ form_row(form.url, {label: 'Lien'}) }}
+            <div class="d-flex gap-2 align-items-center mt-3">
+                <a href="{{ path('article_index') }}" class="btn btn-secondary btn-sm">
+                    <i class="fa-solid fa-circle-arrow-left" title="Retour à la liste d'articles"></i>Retour
+                </a>
+                <button type="submit" class="btn btn-success btn-sm"><i class="fa-solid fa-edit"></i>Modifier</button>
+
+            {{ form_end(form) }}
+
+            <form action="{{ path('article_delete', {id: article.id}) }}" method="post" class="d-inline">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="token" value="{{ csrf_token('delete') }}">
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr ?')">
+                    <i class="fa-solid fa-trash" title="Supprimer l'article"></i>Supprimer
+                </button>
+            </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

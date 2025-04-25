@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% import "default/_macro.html.twig" as macro %}
+
+{% block title %}Profil{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-address-card text-primary"></i> Mon profil</h1>
+{% endblock %}
+
+{% block filariane %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('default_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Mon profil</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block main %}
+    {% set user = app.user %}
+    <h2>{{ user }}</h2>
+
+    <div class="row">
+        <div class="col-md-3">
+            <strong>Matricule :</strong><br />
+            {{ user.matricule }}
+        </div>
+
+        <div class="col-md-3">
+            <strong>Identifiant Région :</strong><br />
+            {{ user.login }}
+        </div>
+
+        <div class="col-md-3">
+            <strong>Email :</strong><br />
+            {{ user.email }}
+        </div>
+
+        <div class="col-md-3">
+            <strong>Téléphone :</strong><br />
+            {{ user.telephone }}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <strong>Droits :</strong><br />
+            {{ user.role }}
+        </div>
+
+        <div class="col-md-3">
+            <strong>Pôle :</strong><br />
+            {{ user.pole }}
+            {% if user.pole and user.pole.actif == false %}
+                <span class="badge bg-danger">Pôle obsolète</span>
+            {% endif %}
+        </div>
+
+        <div class="col-md-3">
+            <strong>Direction :</strong><br />
+            {{ user.direction }}
+            {% if user.direction and user.direction.actif == false %}
+                <span class="badge bg-danger">Direction obsolète</span>
+            {% endif %}
+        </div>
+
+        <div class="col-md-3">
+            <strong>Fonction :</strong><br />
+            {{ user.fonction }}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <strong>N+1 :</strong><br />
+            {{ user.n1 }}
+        </div>
+    </div>
+{% endblock %}

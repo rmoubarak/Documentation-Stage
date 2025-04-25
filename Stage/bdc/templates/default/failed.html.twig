@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Echec{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-ban text-primary"></i> Echec de l'authentification</h1>
+{% endblock %}
+
+{% block main %}
+    <div class="alert alert-warning mt-3">
+        <i class="fa-solid fa-lg fa-exclamation-triangle text-danger"></i> Vous ne disposez pas des droits requis à l'utilisation de cet outil.
+    </div>
+{% endblock %}

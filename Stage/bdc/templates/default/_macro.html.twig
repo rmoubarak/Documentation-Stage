@@ -1,0 +1,23 @@
+{% macro surligne(string, search) %}
+    {% if search != '' %}
+        {{ string
+        |replace({(search) : "<mark>" ~ search ~ "</mark>"})
+        |replace({(search|upper):"<mark>" ~ (search|upper) ~ "</mark>"})
+        |replace({(search|lower):"<mark>" ~ (search|lower) ~ "</mark>"})
+        |replace({(search|capitalize):"<mark>" ~ (search|capitalize) ~ "</mark>"})|striptags('<mark>')|raw }}
+    {% else %}
+        {{ string }}
+    {% endif %}
+{% endmacro %}
+
+{% macro randomColor(firstLetter) %}
+    {% set colors = ['87a7b2','9b7250','bf2c2c','c2185b','7a288e','005db4','00cef1','00adb8','388e3c','afb42b','fdc032','f57c00','a4a4a4','cb9d6a','dd352e','ff6b58','f06292','415c68','616161','880e4f','054c7c'] %}
+    {% set indexOfLetter = null %}
+    {% for letter in 'a'..'z' %}
+        {% if indexOfLetter == null and firstLetter == letter %}
+            {% set indexOfLetter = loop.index0 %}
+        {% endif %}
+    {% endfor %}
+    {% set color = colors[indexOfLetter % colors|length] %}
+    {{ 'bg-' ~ color }}
+{% endmacro %}

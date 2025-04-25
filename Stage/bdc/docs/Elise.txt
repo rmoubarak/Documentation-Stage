@@ -1,0 +1,4 @@
+<b:Chrono>HDF19-065032</b:Chrono> : ID du courrier chez nous
+<b:CreationDate>2019-07-11T09:35:16</b:CreationDate> : Date de création de l'étiquette au service courrier
+<b:DistributionDate>2019-07-11T14:37:38</b:DistributionDate> : date de distribution au service
+<b:MailId>COURRIERS_423038</b:MailId> : identifiant logiciel

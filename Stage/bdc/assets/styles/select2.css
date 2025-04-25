@@ -1,0 +1,23 @@
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option[role="group"] .select2-results__group {
+    font-weight: bold;
+    color: #697a8d;
+    text-transform: uppercase;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options:not(.select2-results__options--nested) {
+    max-height: 30rem;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option[role="group"] .select2-results__options--nested .select2-results__option {
+    padding-left: 2rem;
+}
+
+.select2-selection__choice__display {
+    color: #697a8d;
+    font-size: 0.9375rem;
+    font-weight: 400;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown {
+    color: #697a8d;
+}

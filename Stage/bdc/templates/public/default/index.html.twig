@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page publique{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-home text-primary"></i> Page publique soumise à authentification via formulaire</h1>
+{% endblock %}
+
+{% block filariane %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('default_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Page publique</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block main %}
+    Blabla ...
+
+{% endblock %}

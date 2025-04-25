@@ -1,0 +1,10 @@
+<div class="text-end mb-2">
+    {{ include('categorie/_form_delete.html.twig') }}
+</div>
+
+{{ include('categorie/_form.html.twig', {
+    form: form,
+    path: path('categorie_edit', {'id': categorie.id}),
+    categorie: categorie,
+    button_label: 'Modifier',
+}, with_context = false) }}

@@ -1,0 +1,115 @@
+h1, .h1 {
+    font-size: calc(0.9rem + 1.35vw);
+}
+
+.app-brand-text.demo {
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+}
+
+.card-body {
+    padding-top: 0.8rem;
+}
+
+.form-floating > label {
+    border: 0;
+}
+
+.form-control-label, .col-form-label, .form-group > label, .control-label, .form-label {
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.btn:hover, .dropdown-item:hover, .menu-link:hover {
+    text-decoration: none;
+}
+
+.cursor_move {
+    cursor: move;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #cfe2ff;
+}
+
+.accordion-button {
+    background-color: #cfe2ff;
+}
+
+.accordion-item {
+    margin-top: 1px;
+}
+
+a.badge {
+    color: white;
+}
+
+.fa-solid {
+    margin-right: 3px;
+}
+
+
+
+
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem
+}
+
+.bd-callout h4 {
+    margin-top: 0;
+    margin-bottom: .25rem
+}
+
+.bd-callout p:last-child {
+    margin-bottom: 0
+}
+
+.bd-callout code {
+    border-radius: .25rem
+}
+
+.bd-callout + .bd-callout {
+    margin-top: -.25rem
+}
+
+.bd-callout-info {
+    border-left-color: #5bc0de
+}
+
+.bd-callout-info h4 {
+    color: #5bc0de
+}
+
+.bd-callout-warning {
+    border-left-color: #f0ad4e
+}
+
+.bd-callout-warning h4 {
+    color: #f0ad4e
+}
+
+.bd-callout-danger {
+    border-left-color: #d9534f
+}
+
+.bd-callout-danger h4 {
+    color: #d9534f
+}
+
+.bd-section {
+    --bd-example-padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: 1px;
+    border-top-left-radius: var(--bs-border-radius);
+    border-top-right-radius: var(--bs-border-radius);
+}

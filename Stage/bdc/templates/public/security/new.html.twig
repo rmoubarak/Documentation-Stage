@@ -1,0 +1,83 @@
+{% extends 'base_card.html.twig' %}
+
+{% block title %}Création compte utilisateur{% endblock %}
+
+{% block importmap %}
+    {{ importmap(['app', 'security']) }}
+{% endblock %}
+
+{% block container %}
+    <div class="row mb-5">
+        <div class="offset-md-3 col-md-6 offset-lg-4 col-lg-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><div class="badge bg-label-success rounded"><i class='bx bxs-user-account fs-3 p-1'></i></div>
+                        Création de votre compte</h4>
+
+                    {% if not form.vars.valid %}
+                        <div class="alert alert-danger">
+                            <i class="fa-solid fa-lg fa-exclamation-triangle text-danger"></i>
+                            Votre saisie comporte des erreurs. Veuillez corriger.
+                            {{ form_errors(form) }}
+                        </div>
+                    {% endif %}
+
+                    <p>Veuillez compléter le formulaire :</p>
+
+                    <form id="frm_new" action="{{ path('security_new') }}" method="post" role="form" class="mt-3">
+                        <div class="row">
+                            <div class="col-sm-12">{{ form_row(form.civilite) }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">{{ form_row(form.nom) }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">{{ form_row(form.prenom) }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">{{ form_row(form.email) }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    {{ form_widget(form.password.first, {'attr': {'placeholder': ''}}) }}
+                                    {{ form_label(form.password.first) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    {{ form_widget(form.password.second, {'attr': {'placeholder': ''}}) }}
+                                    {{ form_label(form.password.second) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12" id="captcha" data-label="true"></div>
+                        </div>
+
+                        {{ form_rest(form) }}
+
+                        {% include 'default/_form_validate.html.twig' with {'return_path': 'security_login'} %}
+                    </form>
+
+                    <blockquote class="bd-callout-warning font-italic">
+                        Votre mot de passe doit respecter les règles suivantes :<br />
+                        - Contenir au moins dix caractères<br />
+                        - Contenir au moins une majuscule<br />
+                        - Contenir au moins une minuscule<br />
+                        - Contenir au moins un chiffre<br /><br />
+
+                        <span class="text-justify">
+            <strong>Conseil :</strong> Accoler des noms communs ou faire des phrases est une technique robuste et facilite la mémorisation.<br />
+            <u>Exemple</u> : "Je sais que je ne sais (3x) rien."<br /><br />
+            Vous pouvez également <a href="https://www.cnil.fr/fr/les-conseils-de-la-cnil-pour-un-bon-mot-de-passe"
+                                     target="_blank"><strong>consulter les conseils de la CNIL</strong></a> pour élaborer un bon mot de passe.
+        </span>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

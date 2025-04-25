@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualités{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-newspaper text-primary"></i> Actualités</h1>
+{% endblock %}
+
+{% block filariane %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('default_index') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Actualités</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block navigation %}
+    <a href="#" data-href="{{ path('actualite_new') }}" data-bs-toggle="modal" data-bs-target="#formModal"
+       data-title="Ajouter une actualité" class="btn btn-primary btn-sm"><i
+                class="fa-solid fa-plus-circle"></i> Ajouter une actualité</a>
+{% endblock %}
+
+{% block importmap %}
+    {{ importmap(['app', 'actualite']) }}
+{% endblock %}
+
+{% block main %}
+    <form id="frm_filtre" data-filtre="true" data-action="{{ path('actualite_list', {'page': 1}) }}" class="js-list" data-list="actualite_list" method="post">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-4">
+                    <input name="q" value="" class="form-control" placeholder="Recherche ..." />
+                </div>
+
+                <div class="col-md-auto">
+                    <button type="submit" class="btn btn-success"data-bs-toggle="tooltip" title="Rechercher"><i class="fa-solid fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="bd-section">
+            <div id="actualite_list"></div>
+        </div>
+    </form>
+
+    {{ include('default/_modal_form.html.twig') }}
+{% endblock %}

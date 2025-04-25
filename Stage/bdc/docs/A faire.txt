@@ -1,0 +1,11 @@
+*** Template issu de ***
+https://themewagon.com/themes/free-responsive-bootstrap-5-html5-admin-template-sneat/
+https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/index.html
+
+*** A faire ***
+- Empêcher la modification du mot de passe si authentification par compte AD
+- Limiter dans le temps le nombre de tentatives d'authentification
+- Remettre le script de calcul de force du mot de passe
+
+*** PBS ***
+- Trigger_remove : sur annulation de suppression, on ne peut plus fermer la modale d'où provient la suppression via dissmiss

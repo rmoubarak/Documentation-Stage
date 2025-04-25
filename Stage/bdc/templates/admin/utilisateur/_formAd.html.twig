@@ -1,0 +1,18 @@
+{% if not form.vars.valid %}
+    <div class="alert alert-danger">
+        <i class="fa-solid fa-lg fa-exclamation-triangle"></i>
+        Votre saisie comporte des erreurs. Veuillez corriger.
+    </div>
+{% endif %}
+
+<form name="frm_utilisateur" method="post" action="{{ path('utilisateur_newad') }}" data-async="true"
+      data-callback="{{ path('utilisateur_list', {'page': 1}) }}" data-list="utilisateur_list">
+    {{ form_widget(form) }}
+
+    <hr />
+    {{ include('default/_modal_form_footer.html.twig') }}
+</form>
+
+<script type="text/javascript">
+    $('input[data-autocomplete-ad]').typeahead(typeahead_ad_options, typeahead_ad_datasets);
+</script>

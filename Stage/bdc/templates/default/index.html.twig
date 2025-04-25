@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block titre %}
+    <h1><i class="fa-solid fa-home text-primary"></i> {% if actualite %}{{ actualite.titre }}{% else %}{{ app_name }}{% endif %}</h1>
+{% endblock %}
+
+{% block filariane %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Accueil</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block main %}
+    {% if actualite %}
+        <div class="float-end">
+            {% if actualite_nav.next != null %}
+                <a href="{{ path('default_index', {'actualite_id': actualite_nav.next}) }}" role="button" class="btn btn-default btn-sm">
+                    <i class="fas fa-2x fa-backward" title="Actualité précédente"></i>
+                </a>
+            {% endif %}
+
+            <span class="badge badge-secondary">{{ actualite_nav.total - actualite_nav.position + 1}}/{{ actualite_nav.total }}</span>
+
+            {% if actualite_nav.previous != null %}
+                <a href="{{ path('default_index', {'actualite_id': actualite_nav.previous}) }}" role="button" class="btn btn-default btn-sm">
+                    <i class="fas fa-2x fa-forward" title="Actualité suivante"></i>
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="clearfix"></div>
+
+        {{ actualite|nl2br }}
+
+        <div class="mt-3 text-end"><em>Information du {{ actualite.createdAt|date('d/m/Y') }}</em></div>
+    {% else %}
+        <p>Bienvenue sur l'application {{ app_name }}</p>
+    {% endif %}
+{% endblock %}

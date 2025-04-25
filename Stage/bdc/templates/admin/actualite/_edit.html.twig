@@ -1,0 +1,10 @@
+<div class="text-end mb-2">
+    {{ include('admin/actualite/_form_delete.html.twig') }}
+</div>
+
+{{ include('admin/actualite/_form.html.twig', {
+    form: form,
+    path: path('actualite_edit', {'id': actualite.id}),
+    actualite: actualite,
+    button_label: 'Modifier',
+}, with_context = false) }}

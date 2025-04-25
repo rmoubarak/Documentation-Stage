@@ -1,0 +1,5 @@
+<select id="utilisateur_direction" name="utilisateur[direction]" class="form-select">
+    {% for direction in directions %}
+        <option value="{{ direction.id }}">{{ direction }}</option>
+    {% endfor %}
+</select>

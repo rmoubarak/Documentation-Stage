@@ -1,0 +1,5 @@
+<select id="{{ prefixe }}_gestionnaireTechnique" name="{{ prefixe }}[gestionnaireTechnique]" class="form-control">
+    {% for utilisateur in utilisateurs %}
+        <option value="{{ utilisateur.id }}">{{ utilisateur }}</option>
+    {% endfor %}
+</select>

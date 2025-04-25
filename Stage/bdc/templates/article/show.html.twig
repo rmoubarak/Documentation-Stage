@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block navigation %}
+    <a href="{{ path('article_index') }}" class="btn btn-sm btn-secondary"><i class="fa-solid fa-circle-arrow-left" title="Retour à la liste d'article"></i>Retour</a>
+    <a href="{{ path('article_edit', {id: article.id}) }}" class="btn btn-sm btn-success"><i class="fa-solid fa-edit" title="Modifier l'article"></i>Modifier</a>
+<form action="{{ path('article_delete', {'id': article.id}) }}" method="DELETE" class="d-inline">
+    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Etes-vous sûr ?')"><i class="fa-solid fa-trash" title="Supprimer l'article"></i>Supprimer</button>
+    </form>
+{% endblock %}
+
+{% block main %}
+    <section class="container px-4">
+        <h1>Article : </h1>
+
+        {% if article is not null %}
+            <div class="card mb-1 m-auto">
+                <div class="card-body">
+                    <div class="card-title d-flex justify-content-between">
+                        <h4 class="mb-1">Détail : {{ article.detail }}</h4>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div>Article non trouvé</div>
+        {% endif %}
+    </section>
+{% endblock %}
+
+
+

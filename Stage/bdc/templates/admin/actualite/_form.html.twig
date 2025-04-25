@@ -1,0 +1,29 @@
+{% if not form.vars.valid %}
+    <div class="alert alert-danger">
+        <i class="fa-solid fa-lg fa-exclamation-triangle"></i>
+        Votre saisie comporte des erreurs. Veuillez corriger.
+        {{ form_errors(form) }}
+    </div>
+{% endif %}
+
+{% if actualite is defined %}
+    <p><em>Actualité créée le {{ actualite.createdAt|date('d/m/Y') }}</em></p>
+{% endif %}
+
+<form name="frm_actualite" method="post" action="{{ path }}" data-async="true"
+      data-callback="{{ path('actualite_list', {'page': 1}) }}" data-list="actualite_list">
+
+    <div class="row">
+        <div class="col-md-9">{{ form_row(form.titre) }}</div>
+        <div class="col-md-3">{{ form_row(form.statut) }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">{{ form_row(form.libelle) }}</div>
+    </div>
+
+    {{ form_rest(form) }}
+
+    <hr />
+    {{ include('default/_modal_form_footer.html.twig') }}
+</form>

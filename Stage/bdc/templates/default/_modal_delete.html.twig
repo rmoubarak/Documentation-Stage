@@ -1,0 +1,23 @@
+<div class="modal fade" id="confirmationModal" aria-hidden="true" aria-labelledby="confirmationModalLabel" tabindex="-1" style="z-index: 10000">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h5>Êtes-vous sûr de vouloir supprimer cet élément ?</h5>
+                <p>Cette action est irréversible.</p>
+                {% if message is defined %}
+                    <p><strong>{{ message }}</strong></p>
+                {% endif %}
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnNo" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i> Annuler
+                </button>
+
+                <button type="button" class="btn btn-danger" id="btnYes" data-bs-dismiss="modal">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i> Supprimer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

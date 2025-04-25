@@ -1,0 +1,53 @@
+{% import "default/_macro.html.twig" as macro %}
+
+{% if articles|length != 0 %}
+    <p class="text-info mt-2">
+        <i class="fa-solid fa-list"></i>
+        <strong>Articles {{ articles.getPaginationData.firstItemNumber }}
+            à {{ articles.getPaginationData.lastItemNumber }}
+            sur {{ articles.getTotalItemCount }}</strong>
+    </p>
+
+    {% if articles.pageCount > 1 %}
+        <div class="nav justify-content-center text-center pb-2">
+            {{ knp_pagination_render(articles) }}
+        </div>
+    {% endif %}
+
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+        <tr>
+            <th class="text-nowrap">{{ knp_pagination_sortable(articles, 'Article', 'a.titre') }}</th>
+            <th>Catégorie</th>
+            <th>Date de création</th>
+            <th>crée par :</th>
+            <th>url</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>
+                    &bull; <a href="{{ path('article_show', {'id': article.id}) }}"
+                              title="Voir plus"
+                              class="icone_edit"><strong>{{ macro.surligne(article.titre, q) }}</strong></a><br/>
+
+                </td>
+                <td>{{ article.categories|join(', ') }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('d/m/Y \à H:i') }}</td>
+                <td>{{ article.utilisateur ? article.utilisateur }}</td>
+                <td>{{ macro.surligne(article.url, q) }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if articles.pageCount > 1 %}
+        <div class="nav justify-content-center text-center mt-3">
+            {{ knp_pagination_render(articles) }}
+        </div>
+    {% endif %}
+
+{% else %}
+    {{ component('Alert', { type: 'success', message: 'Aucun article' }) }}
+{% endif %}

@@ -1,0 +1,70 @@
+{% extends 'base_card.html.twig' %}
+
+{% block title %}Authentification{% endblock %}
+
+{% block importmap %}
+    {{ importmap(['app', 'security']) }}
+{% endblock %}
+
+{% block container %}
+    <h1 class="pb-1 mb-4 text-center">Authentification</h1>
+
+    <div class="row mb-5">
+        <div class="offset-md-3 col-md-6 offset-lg-4 col-lg-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><div class="badge bg-label-success rounded"><i class='bx bx-log-in-circle fs-3 p-1'></i></div>
+                        Vérification</h4>
+
+                    {# Authentication errors #}
+                    {% if authenticationError %}
+                        <div class="alert-danger p-2 mb-2">
+                            <i class="fa-solid fa-exclamation-triangle fa-lg"></i>
+                            {{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}
+                        </div>
+                    {% endif %}
+
+                    {# Display current two-factor provider #}
+                    <p class="label">Veuillez saisir le code de sécurité reçu par email :</p>
+
+                    <form class="form" action="{{ checkPathUrl ? checkPathUrl: path(checkPathRoute) }}" method="post" autocomplete="off">
+                        <p class="widget">
+                            <input
+                                    id="_auth_code"
+                                    type="text"
+                                    name="{{ authCodeParameterName }}"
+                                    autocomplete="one-time-code"
+                                    autofocus="autofocus"
+                                    inputmode="numeric"
+                                    pattern="[0-9]*"
+                                    class="form-control"
+                                    required="required"
+                                    autocomplete="off"
+                            />
+                        </p>
+
+                        {% if displayTrustedOption %}
+                            <p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}</label></p>
+                        {% endif %}
+
+                        {% if isCsrfProtectionEnabled %}
+                            <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
+                        {% endif %}
+
+                        <div class="text-center mt-3">
+                            <div>
+                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-check"></i> Valider</button>
+                                <a href="{{ logoutPath }}" role="button" class="btn btn-outline-secondary"><i class="fa-solid fa-sign-out-alt"></i> Annuler</a>
+                            </div>
+
+                            <div class="mt-3">
+                                <a href="#" id="2fa_renvoi"><i class="fa-solid fa-refresh fa-lg"></i> Renvoyer le code</a>
+                                <div id="2fa_renvoi_icon"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

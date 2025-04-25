@@ -1,0 +1,54 @@
+{% import "default/_macro.html.twig" as macro %}
+
+{% if actualites|length != 0 %}
+    <p class="text-info mt-2">
+        <i class="fa-solid fa-list"></i>
+        <strong>Actualités {{ actualites.getPaginationData.firstItemNumber }}
+            à {{ actualites.getPaginationData.lastItemNumber }}
+            sur {{ actualites.getTotalItemCount }}</strong>
+    </p>
+
+    {% if actualites.pageCount > 1 %}
+        <div class="nav justify-content-center text-center pb-2">
+            {{ knp_pagination_render(actualites) }}
+        </div>
+    {% endif %}
+
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Auteur</th>
+            <th class="text-center">Statut</th>
+            <th>Titre</th>
+            <th>Détail</th>
+        </tr>
+        </thead>
+        <tbody data-link="row" class="rowlink">
+        {% for actualite in actualites %}
+            <tr>
+                <td>{{ actualite.createdAt|date('d/m/Y') }}</td>
+                <td>{{ actualite.utilisateur }}</td>
+                <td class="text-center">
+                    {% if actualite.statut == constant('STATUTS', actualite)[0] %}
+                        <i class="fa-solid fa-2x fa-plug-circle-check text-success" title="{{ constant('STATUTS', actualite)[0] }}"></i>
+                    {% else %}
+                        <i class="fa-solid fa-2x fa-plug-circle-xmark text-danger" title="{{ constant('STATUTS', actualite)[1] }}"></i>
+                    {% endif %}
+                </td>
+                <td><a href="#" data-href="{{ path('actualite_edit', {'id': actualite.id}) }}" data-bs-toggle="modal"
+                       data-bs-target="#formModal" data-title="Modifier un compte actualite" class="icone_edit"><strong>{{ actualite.titre }}</strong></a></td>
+                <td>{{ actualite.libelle|slice(0, 150) }} (...)</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if actualites.pageCount > 1 %}
+        <div class="nav justify-content-center text-center mt-3">
+            {{ knp_pagination_render(actualites) }}
+        </div>
+    {% endif %}
+{% else %}
+    {{ component('Alert', { type: 'success', message: 'Aucune actualité' }) }}
+{% endif %}

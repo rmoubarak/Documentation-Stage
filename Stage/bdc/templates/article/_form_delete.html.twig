@@ -1,0 +1,7 @@
+<form action="{{ path('article_delete', {'id': article.id}) }}" method="DELETE" class="d-inline"
+      data-ajaxconfirmation="true" data-callback="{{ path('article_list', {'page': 1}) }}" data-list="article_list">
+    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+    <button type="submit" class="btn btn-sm btn-danger" data-bs-target="#confirmationModal"><i class="fa-solid fa-trash" aria-hidden="true"></i> Supprimer</button>
+</form>
+
+{{ include('default/_modal_delete.html.twig') }}

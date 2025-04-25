@@ -1,0 +1,36 @@
+<div {{ attributes }}>
+    {{ form_start(form, {
+        attr: {
+            'novalidate': true,
+            'data-action': 'live#action',
+        }
+    }) }}
+        <div class="row">
+            <div class="col-md-3">{{ form_row(form.civilite) }}</div>
+            <div class="col-md-5">{{ form_row(form.nom) }}</div>
+            <div class="col-md-4">{{ form_row(form.prenom) }}</div>
+        </div>
+
+        <div class="row mt-3 form-label">
+            <div class="col-md-6">{{ form_row(form.pole) }}</div>
+            <div class="col-md-6">{{ form_row(form.direction) }}</div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-3">{{ form_row(form.login) }}</div>
+            <div class="col-md-5">{{ form_row(form.email) }}</div>
+            <div class="col-md-3">{{ form_row(form.telephone) }}</div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-3">{{ form_row(form.actif) }}</div>
+            <div class="col-md-5">{{ form_row(form.role) }}</div>
+            <div class="col-md-4">{{ form_row(form.matricule) }}</div>
+        </div>
+
+        {{ form_rest(form) }}
+
+        <hr />
+        {{ include('default/_modal_form_footer.html.twig') }}
+    {{ form_end(form) }}
+</div>

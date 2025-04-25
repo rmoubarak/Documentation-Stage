@@ -1,0 +1,66 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    locale: 'fr'
+    app.name: "Fond de tarte"
+    app.url: '%env(APP_URL)%'
+    app.mail.dev_delivery_addresses: '%env(MAIL_DEV_DELIVERY_ADDRESSES)%'
+    ldap.host: 'ldaps://ldvldapp01.hautsdefrance.net'
+    ldap.dn: 'uid=jpegwrite,ou=users,o=ldap-services,dc=nordpasdecalais,dc=fr'
+    ldap.pass: '%env(LDAP_PASS)%'
+    ldap.basedn: "dc=nordpasdecalais,dc=fr"
+    api.structure.url: "https://talendruntime.hautsdefrance.net/services/referentielDirections/"
+    api.agent.url: "https://talendruntime.hautsdefrance.net/services/responsable_agt/mat/"
+    captcha.client_id: 'RHDF_CAPTCHA_PROD'
+    captcha.client_code: 3144
+    captcha.sp_key: '%env(CAPTCHA_SP_KEY)%'
+    captcha.secret: '%env(CAPTCHA_SECRET)%'
+    captcha.url: 'https://captcha.liveidentity.com/captcha'
+    captcha.url_invisible: 'https://trust.liveidentity.com/trust'
+    sirene.key: 'aenq2k33gJlqwfM_osXJ2LkfDFMa'
+    sirene.secret: '%env(SIRENE_SECRET)%'
+    elise.application_id: 'ELYCEE'
+    elise.application_key: '%env(ELISE_APPLICATION_KEY)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    App\Services\Captcha:
+        arguments: ["%captcha.client_id%", "%captcha.client_code%", "%captcha.secret%", "%captcha.url%"]
+
+    app.two_factor_auth_code_mailer:
+        class: App\Services\TwoFactorAuthCodeMailer
+
+    #App\Services\Ldap:
+    #    arguments: ["%ldap.host%", "%ldap.dn%", "%ldap.basedn%", "%ldap.pass%" ,"@doctrine.orm.entity_manager"]
+
+    App\Services\Agent:
+        arguments: ["%api.agent.url%"]
+
+    App\Services\Chiffre:
+        arguments: ["%env(ENCRYPTION_KEY)%"]
+
+    App\Services\Structure:
+        arguments: ["%api.structure.url%"]
+
+    App\Services\Elise:
+        arguments: ["%elise.application_id%", "%elise.application_key%"]
+

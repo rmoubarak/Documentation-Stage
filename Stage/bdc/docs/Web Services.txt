@@ -1,0 +1,32 @@
+WEB SERVICES DISPONIBLES
+
+
+*** INTERNES ***
+
+- Recherche du manager par matricule du N-1 (eple, siège et ports) :
+	- Service Agent.php
+	- URL : https://talendruntime.hautsdefrance.net/services/responsable_agt/mat/
+	- Utilisation : authentification (SsoAuthenticator.php)
+- Liste des structures hiérarchiques (pôles et directions) :
+    - Service Structure.php
+    - URL : https://talendruntime.hautsdefrance.net/services/referentielDirections/
+    - Utilisation : tâche cron (UpdateStructureCommand.php)
+- Recherche des agents EPLE par UAI établissement :
+    - Service WsLdap.php
+    - URL : https://ws-ldap.hautsdefrance.net
+    - Utilisation : gLycée > Suppléances
+- Recherche des courriers Elise
+    - Service Elise.php
+
+
+*** EXTERNES ***
+
+- Captha :
+    - Service Captcha.php
+- Recherche des collèges HDF :
+    - Service EducationNationale.php
+- Recherche d'entreprise par SIREN :
+    - Service Sirene.php
+- Recherche de commune, adresse postale, QPV, EPCI, commune belge, calcul d'intinéraire :
+    - Service Sig.php
+

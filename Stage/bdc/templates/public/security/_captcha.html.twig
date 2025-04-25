@@ -1,0 +1,9 @@
+{% if captcha_image_url %}
+    <label class="form-label" id="captcha_label">Veuillez recopier le captcha* :</label>
+    <div class="input-group">
+        <span class="input-group-text p-0"><img src="{{ captcha_image_url }}" alt="Captcha" /></span>
+        <input type="text" class="form-control" name="captcha_answer" placeholder="Code ci-contre" required="required" autocomplete="off" />
+        <button class="btn btn-success" type="button" id="captcha_refresh"><i class="fa-solid fa-refresh text-white" title="Renouveler le code"></i></button>
+    </div>
+    <input type="hidden" name="captcha_challenge_id" value="{{ captcha_challenge_id }}" />
+{% endif %}

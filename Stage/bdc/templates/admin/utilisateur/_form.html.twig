@@ -1,0 +1,71 @@
+{% if not form.vars.valid %}
+    <div class="alert alert-danger">
+        <i class="fa-solid fa-lg fa-exclamation-triangle"></i>
+        Votre saisie comporte des erreurs. Veuillez corriger.
+        {{ form_errors(form) }}
+    </div>
+{% endif %}
+
+{% if utilisateur is defined %}
+    <p><em>Compte créé le {{ utilisateur.createdAt|date('d/m/Y') }}
+            {{ utilisateur.updatedAt ? ', dernière mise à jour le ' ~ utilisateur.updatedAt|date('d/m/Y \à H:i') }}
+            {{ utilisateur.access[0] is defined ? ', dernière connexion le ' ~ utilisateur.access[0].date|date('d/m/Y \à H:i') }}</em></p>
+{% endif %}
+
+<form name="frm_utilisateur" method="post" action="{{ path }}" data-async="true"
+      data-callback="{{ path('utilisateur_list', {'page': 1}) }}" data-list="utilisateur_list">
+
+    <div class="row">
+        <div class="col-md-3">{{ form_row(form.civilite) }}</div>
+        <div class="col-md-5">{{ form_row(form.nom) }}</div>
+        <div class="col-md-4">{{ form_row(form.prenom) }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.pole) }}</div>
+        <div class="col-md-6">{{ form_row(form.direction) }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">{{ form_row(form.login) }}</div>
+        <div class="col-md-5">{{ form_row(form.email) }}</div>
+        <div class="col-md-3">{{ form_row(form.telephone) }}</div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">{{ form_row(form.actif) }}</div>
+        <div class="col-md-5">{{ form_row(form.role) }}</div>
+        <div class="col-md-4">{{ form_row(form.matricule) }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">{{ form_row(form.showMenu) }}</div>
+    </div>
+
+    {{ form_rest(form) }}
+
+    <hr />
+    {{ include('default/_modal_form_footer.html.twig') }}
+</form>
+
+{% if utilisateur.login == null %}
+    <blockquote class="bd-callout-warning font-italic">
+        <strong>Note :</strong><br />
+        - L'identifiant doit correspondre à l'identifiant de connexion Région<br />
+    </blockquote>
+{% endif %}
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        {# En modif, on set la direction #}
+        {% if utilisateur.direction != null %}
+            $('#utilisateur_pole').val({{ utilisateur.direction.pole.id }});
+            $('#utilisateur_pole').change();
+            setTimeout(function () {
+                $('#utilisateur_direction').val('{{ utilisateur.direction.id }}')
+            }, 1000);
+        {% else %}
+            $('#utilisateur_pole').change();
+        {% endif %}
+    });
+</script>

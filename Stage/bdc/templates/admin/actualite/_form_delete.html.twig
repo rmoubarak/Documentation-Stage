@@ -1,0 +1,7 @@
+<form action="{{ path('actualite_delete', {'id': actualite.id}) }}" method="DELETE" class="d-inline"
+      data-ajaxconfirmation="true" data-callback="{{ path('actualite_list', {'page': 1}) }}" data-list="actualite_list">
+    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+    <button type="submit" class="btn btn-sm btn-danger" data-bs-target="#confirmationModal" data-bs-title="Supprimer l'actualité ?" data-bs-toggle="tooltip"><i class="fa-solid fa-trash" aria-hidden="true"></i> Supprimer</button>
+</form>
+
+{{ include('default/_modal_delete.html.twig') }}

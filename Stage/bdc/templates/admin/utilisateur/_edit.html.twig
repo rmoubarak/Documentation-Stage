@@ -1,0 +1,15 @@
+<div class="text-end mb-2">
+    {% if is_granted('ROLE_SUPER_ADMIN') and utilisateur != app.user %}
+        <a href="{{ path('default_index', {'_switch_user' : utilisateur.login}) }}" role="button" class="btn btn-warning btn-sm"><i
+                    class="fa-solid fa-plug"></i> Se connecter en tant que {{ utilisateur }}</a>
+    {% endif %}
+
+    {{ include('admin/utilisateur/_form_delete.html.twig') }}
+</div>
+
+{{ include('admin/utilisateur/_form.html.twig', {
+    form: form,
+    path: path('utilisateur_edit', {'id': utilisateur.id}),
+    utilisateur: utilisateur,
+    button_label: 'Modifier',
+}, with_context = false) }}
